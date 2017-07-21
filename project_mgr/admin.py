@@ -1,6 +1,8 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 from django import forms
 from froala_editor.widgets import FroalaEditor
+from django.conf.urls.static import static
 
 from project_mgr.models import *
 
@@ -29,13 +31,17 @@ class TaskAdminForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = '__all__'
+        fields = ('description', 'version', 'dev_type', 'dev_model', 'priority', 'product_liable', 'development_liable',
+                  'progress', 'review_time', 'dev_start_time', 'dev_complete_time', 'test_start_time', 'release_time')
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('id', 'description',)
+    list_display = ('id', '_get_description',)
 
     form = TaskAdminForm
+
+    def _get_description(self, obj):
+        return mark_safe(obj.description)
 
 
 admin.site.register(Project, ProjectAdmin)

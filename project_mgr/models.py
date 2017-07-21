@@ -113,24 +113,24 @@ class Task(models.Model):
     """
     评审时间
     """
-    review_time = models.DateTimeField()
+    review_time = models.DateTimeField(blank=True, null=True)
 
     """
     开始开发时间
     """
-    dev_start_time = models.DateTimeField()
+    dev_start_time = models.DateTimeField(blank=True, null=True)
 
     """
     完成开发时间
     """
-    dev_complete_time = models.DateTimeField()
+    dev_complete_time = models.DateTimeField(blank=True, null=True)
 
     """
     提测时间
     """
-    test_start_time = models.DateTimeField()
+    test_start_time = models.DateTimeField(blank=True, null=True)
 
     """
     发布时间
     """
-    release_time = models.DateTimeField()
+    release_time = models.DateTimeField(blank=True, null=True)
